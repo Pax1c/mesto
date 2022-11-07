@@ -3,5 +3,6 @@
     margin-bottom: 30px;
     box-sizing: border-box;
     border-bottom: 1px solid rgba(0, 0, 0, .2);
-    height: 27px;
+    min-height: 27px;
+    min-width: 358px;
 }

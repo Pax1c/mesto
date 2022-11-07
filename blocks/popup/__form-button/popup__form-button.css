@@ -1,7 +1,7 @@
 .popup__form-button {
     margin-top: 18px;
     background-color: black;
-    padding: 14px 124px 18px;
+    padding: 14px 130px 18px;
     color: #fff;
     opacity: 1;
     cursor: pointer;
@@ -16,6 +16,7 @@
 
 @media screen and (max-width: 767px) {
     .popup__form-button {
+        margin-top: 15px;
         padding-left: 82px;
         padding-right: 82px;
         padding-bottom: 14px;
