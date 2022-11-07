@@ -12,4 +12,4 @@ https://pax1c.github.io/mesto/
 
 ## На будущее
 
-Изучить непроостые концепции Java-Script :)
+Изучить непростые концепции Java-Script :)
