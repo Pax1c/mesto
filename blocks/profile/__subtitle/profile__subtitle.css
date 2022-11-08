@@ -20,5 +20,6 @@
     .profile__subtitle {
         font-size: 0.875rem;
         line-height: 1.06rem;
+        max-width: 189px;
     }
 }
