@@ -5,5 +5,5 @@
     object-fit: cover;
     cursor: pointer;
     background-color: rgba(0, 0, 0, .5);
-    filter: brightness(60%);
+    filter: brightness(60%)
 }
