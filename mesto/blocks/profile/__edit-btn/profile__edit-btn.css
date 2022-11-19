@@ -1,0 +1,27 @@
+.profile__edit-btn {
+    all: unset;
+    height: 24px;
+    width: 24px;
+    background-image: url(../../../images/Edit-Button.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    grid-area: edit-btn;
+}
+
+@media screen and (max-width: 931px) {
+    .profile__edit-btn {
+        position: absolute;
+        right: -38px;
+        top: 12px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .profile__edit-btn {
+        top: 8px;
+        height: 18px;
+        width: 18px;
+        background-image: url(../../../images/Edit-Button_mobile.svg);
+    }
+}
