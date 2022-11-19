@@ -1,6 +1,6 @@
 const popupProfile = document.querySelector('.popup_profile');
 const editButton = document.querySelector('.profile__edit-btn');
-const popupProfileCloseBtn = document.querySelector('.popup_profile__close');
+const popupProfileCloseBtn = document.querySelector('.popup__close_profile');
 
 const popupOpen = (popup) => popup.classList.add('popup_opened');
 const popupClose = (popup) => popup.classList.remove('popup_opened');
@@ -22,7 +22,7 @@ formPopupProfile.addEventListener('submit', (event) => {
 
 const popupAddCard = document.querySelector('.popup_card');
 const addButton = document.querySelector('.profile__add-btn');
-const popupCardCloseBtn = document.querySelector('.popup_card__close');
+const popupCardCloseBtn = document.querySelector('.popup__close_card');
 
 addButton.addEventListener('click', () => popupOpen(popupAddCard));
 
@@ -72,7 +72,7 @@ const likeCard = (event) => {
 
 
 const popupPhoto = document.querySelector('.popup_photo');
-const popupPhotoCloseBtn = document.querySelector('.popup_photo__close');
+const popupPhotoCloseBtn = document.querySelector('.popup__close_photo');
 const popupPhotoImg = document.querySelector('.popup__card-image');
 const popupPhotoName = document.querySelector('.popup__card-name');
 popupPhotoCloseBtn.addEventListener('click', () => popupClose(popupPhoto));
