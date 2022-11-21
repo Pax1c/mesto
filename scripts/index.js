@@ -6,7 +6,7 @@ const handleSubmitProfileForm = document.querySelector('.popup__form_profile');
 const nameInput = document.querySelector('.popup__form-item_edit_title');
 const jobInput = document.querySelector('.popup__form-item_edit_subtitle');
 const cardPopup = document.querySelector('.popup_type_card');
-const ButtonAdd = document.querySelector('.profile__add-btn');
+const buttonAdd = document.querySelector('.profile__add-btn');
 const popupCardCloseBtn = document.querySelector('.popup__close_card');
 const cardList = document.querySelector('.elements');
 const nameCardInput = document.querySelector('.popup__form-item_card_title');
@@ -85,7 +85,7 @@ handleSubmitProfileForm.addEventListener('submit', (event) => {
     closePopup(profilePopup);
 });
 
-ButtonAdd.addEventListener('click', () => {
+buttonAdd.addEventListener('click', () => {
     openPopup(cardPopup);
 });
 
