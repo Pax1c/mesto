@@ -2,6 +2,9 @@
     border-radius: 10px 10px 0 0;
     width: 282px;
     height: 282px;
+    background: #000;
+    filter: brightness(80%);
     object-fit: cover;
     cursor: pointer;
+    display: block;
 }
