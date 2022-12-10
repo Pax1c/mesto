@@ -1,5 +1,5 @@
 //Объявляем переменные
-const submitButton = document.querySelector('#submit-card');
+const saveCardButton = document.querySelector('#submit-card');
 const config = {
     formSelector: '.popup__form',
     inputSelector: '.popup__form-item',
@@ -114,7 +114,7 @@ handleSubmitProfileForm.addEventListener('submit', (event) => {
 
 buttonAdd.addEventListener('click', () => {
     openPopup(cardPopup);
-    disableBtn(submitButton, config)
+    disableBtn(saveCardButton, config)
 });
 
 handleSubmitCardForm.addEventListener('submit', (event) => {
