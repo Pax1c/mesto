@@ -1,4 +1,13 @@
 //Объявляем переменные
+const submitButton = document.querySelector('#submit-card');
+const config = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__form-item',
+    submitButtonSelector: '.popup__form-button',
+    inactiveButtonClass: 'popup__form-button_inactive',
+    inputErrorClass: 'popup__form-item_invalid',
+    errorClass: 'popup__input-error_active'
+};
 const popupList = document.querySelectorAll('.popup');
 const profilePopup = document.querySelector('.popup_type_profile');
 const buttonEdit = document.querySelector('.profile__edit-btn');
@@ -51,8 +60,8 @@ const openImage = (card) => {
 }
 
 function handleKeyClosePopup(evt) {
-    const popupOpened = document.querySelector('.popup_opened');
     if (evt.key === "Escape") {
+        const popupOpened = document.querySelector('.popup_opened');
         closePopup(popupOpened);
     }
 };
@@ -93,6 +102,7 @@ popupList.forEach((popup) => {
 
 buttonEdit.addEventListener('click', () => {
     openPopup(profilePopup);
+
 });
 
 handleSubmitProfileForm.addEventListener('submit', (event) => {
@@ -104,13 +114,13 @@ handleSubmitProfileForm.addEventListener('submit', (event) => {
 
 buttonAdd.addEventListener('click', () => {
     openPopup(cardPopup);
+    disableBtn(submitButton, config)
 });
 
 handleSubmitCardForm.addEventListener('submit', (event) => {
     event.preventDefault();
     renderCard({ name: nameCardInput.value, link: imageCardInput.value });
-    nameCardInput.value = '';
-    imageCardInput.value = '';
+    handleSubmitCardForm.reset();
     closePopup(cardPopup);
 });
 

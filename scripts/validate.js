@@ -1,13 +1,4 @@
 //Валидация
-const config = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__form-item',
-    submitButtonSelector: '.popup__form-button',
-    inactiveButtonClass: 'popup__form-button_inactive',
-    inputErrorClass: 'popup__form-item_invalid',
-    errorClass: 'popup__input-error_active'
-};
-
 const hasInvalidInput = (inputList) => {
 
     return inputList.some((inputElement) => {
@@ -15,16 +6,21 @@ const hasInvalidInput = (inputList) => {
     })
 };
 
+const disableBtn = (buttonElement, config) => {
+    buttonElement.classList.add(config.inactiveButtonClass);
+    buttonElement.disabled = true;
+}
+
+const enableBtn = (buttonElement, config) => {
+    buttonElement.classList.remove(config.inactiveButtonClass);
+    buttonElement.disabled = false;
+}
+
 const toggleButtonState = (inputList, buttonElement, config) => {
-
     if (hasInvalidInput(inputList)) {
-
-        buttonElement.classList.add(config.inactiveButtonClass);
-        buttonElement.disabled = true;
+        disableBtn(buttonElement, config);
     } else {
-
-        buttonElement.classList.remove(config.inactiveButtonClass);
-        buttonElement.disabled = false;
+        enableBtn(buttonElement, config);
     }
 };
 
@@ -65,12 +61,7 @@ const setEventListeners = (formElement, config) => {
 const enableValidation = (config) => {
     const formList = Array.from(document.querySelectorAll(config.formSelector));
     formList.forEach((formElement) => {
-        formElement.addEventListener('submit', (evt) => {
-            evt.preventDefault();
-        });
-
         const fieldsetList = Array.from(document.querySelectorAll('.popup__form-set'));
-
         fieldsetList.forEach((fieldSet) => {
             setEventListeners(fieldSet, config);
         });
