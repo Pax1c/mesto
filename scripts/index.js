@@ -1,4 +1,7 @@
+import { FormValidator } from "./FormValidator.js";
+import { Card, initialCards } from "./Card.js";
 //Объявляем переменные
+
 const saveCardButton = document.querySelector('#submit-card');
 const config = {
     formSelector: '.popup__form',
@@ -11,24 +14,21 @@ const config = {
 const popupList = document.querySelectorAll('.popup');
 const profilePopup = document.querySelector('.popup_type_profile');
 const buttonEdit = document.querySelector('.profile__edit-btn');
-const profilePopupCloseBtn = document.querySelector('.popup__close_profile');
 const handleSubmitProfileForm = document.querySelector('.popup__form_profile');
 const nameInput = document.querySelector('.popup__form-item_edit_title');
 const jobInput = document.querySelector('.popup__form-item_edit_subtitle');
 const cardPopup = document.querySelector('.popup_type_card');
 const buttonAdd = document.querySelector('.profile__add-btn');
-const popupCardCloseBtn = document.querySelector('.popup__close_card');
 const cardList = document.querySelector('.elements');
 const nameCardInput = document.querySelector('.popup__form-item_card_title');
 const imageCardInput = document.querySelector('.popup__form-item_card_link');
 const handleSubmitCardForm = document.querySelector('.popup__form_card');
-const cardTemplate = document.querySelector('#card-template').content.querySelector('.element');
 const photoPopup = document.querySelector('.popup_type_photo');
 const photoPopupCloseBtn = document.querySelector('.popup__close_photo');
-const photoPopupImg = document.querySelector('.popup__card-image');
-const photoPopupName = document.querySelector('.popup__card-name');
 const profileName = document.querySelector('.profile__title');
 const profileJob = document.querySelector('.profile__subtitle');
+const photoPopupImg = document.querySelector('.popup__card-image');
+const photoPopupName = document.querySelector('.popup__card-name');
 nameInput.value = profileName.textContent;
 jobInput.value = profileJob.textContent;
 
@@ -44,21 +44,6 @@ const closePopup = (popup) => {
 
 }
 
-const handleDeleteCard = (event) => {
-    event.target.closest('.element').remove();
-}
-
-const handleLikeCard = (event) => {
-    event.target.closest('.element__like-btn').classList.toggle('element__like-btn_active');
-}
-
-const openImage = (card) => {
-    photoPopupImg.src = card.link;
-    photoPopupImg.alt = card.name;
-    photoPopupName.textContent = card.name;
-    openPopup(photoPopup);
-}
-
 function handleKeyClosePopup(evt) {
     if (evt.key === "Escape") {
         const popupOpened = document.querySelector('.popup_opened');
@@ -66,27 +51,17 @@ function handleKeyClosePopup(evt) {
     }
 };
 
-const generateCard = (card) => {
-    const newCard = cardTemplate.cloneNode(true);
-    const nameCard = newCard.querySelector('.element__name');
-    nameCard.textContent = card.name;
-    const imageCard = newCard.querySelector('.element__image');
-    imageCard.src = card.link;
-    imageCard.alt = card.name;
-    const btnDel = newCard.querySelector('.element__del-btn');
-    btnDel.addEventListener('click', handleDeleteCard);
-    const btnLike = newCard.querySelector('.element__like-btn');
-    btnLike.addEventListener('click', handleLikeCard);
-    imageCard.addEventListener('click', () => openImage(card));
-    return newCard;
+const openImage = () => {
+    openPopup(photoPopup);
 }
 
-const renderCard = (card) => {
-    cardList.prepend(generateCard(card));
+const renderCard = (cardData) => {
+    const card = new Card(cardData);
+    cardList.prepend(card.getView());
 }
 
-initialCards.forEach((card) => {
-    renderCard(card);
+initialCards.forEach((initialCard) => {
+    renderCard(initialCard);
 });
 
 //Добавляем обработчики событий
@@ -102,7 +77,7 @@ popupList.forEach((popup) => {
 
 buttonEdit.addEventListener('click', () => {
     openPopup(profilePopup);
-
+    cardFormValidator.disableBtn();
 });
 
 handleSubmitProfileForm.addEventListener('submit', (event) => {
@@ -114,7 +89,7 @@ handleSubmitProfileForm.addEventListener('submit', (event) => {
 
 buttonAdd.addEventListener('click', () => {
     openPopup(cardPopup);
-    disableBtn(saveCardButton, config)
+    cardFormValidator.disableBtn();
 });
 
 handleSubmitCardForm.addEventListener('submit', (event) => {
@@ -126,3 +101,8 @@ handleSubmitCardForm.addEventListener('submit', (event) => {
 
 photoPopupCloseBtn.addEventListener('click', () => closePopup(photoPopup));
 
+const profileFormValidator = new FormValidator(config, profilePopup);
+profileFormValidator.enableValidation();
+const cardFormValidator = new FormValidator(config, cardPopup);
+cardFormValidator.enableValidation();
+export { openImage, photoPopupImg, photoPopupName };
