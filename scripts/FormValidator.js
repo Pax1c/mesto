@@ -65,9 +65,6 @@ export class FormValidator {
     };
 
     enableValidation() {
-        const fieldsetList = Array.from(document.querySelectorAll('.popup__form-set'));
-        fieldsetList.forEach((fieldSet) => {
-            this._setEventListeners(fieldSet);
-        });
+        this._setEventListeners();
     };
-};
+}

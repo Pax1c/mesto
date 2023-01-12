@@ -1,8 +1,7 @@
 import { FormValidator } from "./FormValidator.js";
-import { Card, initialCards } from "./Card.js";
+import { Card } from "./Card.js";
 //Объявляем переменные
 
-const saveCardButton = document.querySelector('#submit-card');
 const config = {
     formSelector: '.popup__form',
     inputSelector: '.popup__form-item',
@@ -11,10 +10,37 @@ const config = {
     inputErrorClass: 'popup__form-item_invalid',
     errorClass: 'popup__input-error_active'
 };
+export const initialCards = [
+    {
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
+
 const popupList = document.querySelectorAll('.popup');
 const profilePopup = document.querySelector('.popup_type_profile');
 const buttonEdit = document.querySelector('.profile__edit-btn');
-const handleSubmitProfileForm = document.querySelector('.popup__form_profile');
+const popupEditProfileForm = document.querySelector('.popup__form_profile');
 const nameInput = document.querySelector('.popup__form-item_edit_title');
 const jobInput = document.querySelector('.popup__form-item_edit_subtitle');
 const cardPopup = document.querySelector('.popup_type_card');
@@ -22,13 +48,11 @@ const buttonAdd = document.querySelector('.profile__add-btn');
 const cardList = document.querySelector('.elements');
 const nameCardInput = document.querySelector('.popup__form-item_card_title');
 const imageCardInput = document.querySelector('.popup__form-item_card_link');
-const handleSubmitCardForm = document.querySelector('.popup__form_card');
+const popupSumbitCardForm = document.querySelector('.popup__form_card');
 const photoPopup = document.querySelector('.popup_type_photo');
-const photoPopupCloseBtn = document.querySelector('.popup__close_photo');
+const BtnClosePopupPhoto = document.querySelector('.popup__close_photo');
 const profileName = document.querySelector('.profile__title');
 const profileJob = document.querySelector('.profile__subtitle');
-const photoPopupImg = document.querySelector('.popup__card-image');
-const photoPopupName = document.querySelector('.popup__card-name');
 nameInput.value = profileName.textContent;
 jobInput.value = profileJob.textContent;
 
@@ -80,7 +104,7 @@ buttonEdit.addEventListener('click', () => {
     cardFormValidator.disableBtn();
 });
 
-handleSubmitProfileForm.addEventListener('submit', (event) => {
+popupEditProfileForm.addEventListener('submit', (event) => {
     event.preventDefault();
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
@@ -92,17 +116,18 @@ buttonAdd.addEventListener('click', () => {
     cardFormValidator.disableBtn();
 });
 
-handleSubmitCardForm.addEventListener('submit', (event) => {
+popupSumbitCardForm.addEventListener('submit', (event) => {
     event.preventDefault();
     renderCard({ name: nameCardInput.value, link: imageCardInput.value });
-    handleSubmitCardForm.reset();
     closePopup(cardPopup);
+    popupSumbitCardForm.reset();
 });
 
-photoPopupCloseBtn.addEventListener('click', () => closePopup(photoPopup));
+BtnClosePopupPhoto.addEventListener('click', () => closePopup(photoPopup));
 
 const profileFormValidator = new FormValidator(config, profilePopup);
 profileFormValidator.enableValidation();
 const cardFormValidator = new FormValidator(config, cardPopup);
 cardFormValidator.enableValidation();
-export { openImage, photoPopupImg, photoPopupName };
+
+export { openImage };

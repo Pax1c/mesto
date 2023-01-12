@@ -1,31 +1,5 @@
-import { openImage, photoPopupImg, photoPopupName } from './index.js';
-
-export const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
+import { openImage, initialCards } from './index.js';
+import { photoPopupImg, photoPopupName } from './utils.js';
 
 export class Card {
     constructor(initialCards) {
@@ -69,7 +43,7 @@ export class Card {
         const likeBtn = this._newCard.querySelector('.element__like-btn');
         likeBtn.addEventListener('click', () => { this._handleLikeCard() });
         const imageCard = this._newCard.querySelector('.element__image');
-        imageCard.addEventListener('click', () => { this._bigImage() })
+        imageCard.addEventListener('click', () => { this._bigImage() });
     }
 
     getView() {
