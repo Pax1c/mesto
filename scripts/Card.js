@@ -1,15 +1,14 @@
-import { openImage, initialCards } from './index.js';
-import { photoPopupImg, photoPopupName } from './utils.js';
-
 export class Card {
-    constructor(initialCards) {
-        this._name = initialCards.name;
-        this._link = initialCards.link;
+    constructor(cardData, template, handleCardClick) {
+        this._name = cardData.place;
+        this._link = cardData.link;
+        this._template = document.querySelector(template);
+        this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
-        const card = document.querySelector('#card-template').content.querySelector('.element').cloneNode(true);
-        return card;
+        const cardElement = this._template.content.querySelector('.element').cloneNode(true);
+        return cardElement;
     }
 
     _setData() {
@@ -30,26 +29,23 @@ export class Card {
         this._newCard = null;
     }
 
-    _bigImage() {
-        photoPopupImg.src = this._link;
-        photoPopupImg.alt = this._name;
-        photoPopupName.textContent = this._name;
-        openImage();
+    _handleCardClick() {
+        this.handleCardClick(this._name, this._link);
     }
 
     _setEventListeners() {
         const dltBtn = this._newCard.querySelector('.element__del-btn');
-        dltBtn.addEventListener('click', () => { this._handleDeleteCard() });
+        dltBtn.addEventListener('click', () => this._handleDeleteCard());
         const likeBtn = this._newCard.querySelector('.element__like-btn');
-        likeBtn.addEventListener('click', () => { this._handleLikeCard() });
+        likeBtn.addEventListener('click', () => this._handleLikeCard());
         const imageCard = this._newCard.querySelector('.element__image');
-        imageCard.addEventListener('click', () => { this._bigImage() });
+        imageCard.addEventListener('click', () => this._handleCardClick());
     }
 
     getView() {
         this._newCard = this._getTemplate();
-        this._setData();
         this._setEventListeners();
+        this._setData();
 
         return this._newCard;
     }
