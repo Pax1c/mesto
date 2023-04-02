@@ -1,0 +1,13 @@
+.popup__form-item {
+    border: 0;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    min-height: 27px;
+    min-width: 358px;
+}
+
+@media screen and (max-width: 767px) {
+    .popup__form-item {
+        min-width: 238px;
+    }
+}
