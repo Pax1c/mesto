@@ -4,6 +4,7 @@ export class Card {
         this._link = cardData.link;
         this._template = document.querySelector(template);
         this._handleCardClick = handleCardClick;
+
     }
 
     _getTemplate() {
@@ -12,16 +13,14 @@ export class Card {
     }
 
     _setData() {
-        const nameCard = this._newCard.querySelector('.element__name');
-        nameCard.textContent = this._name;
-        const imageCard = this._newCard.querySelector('.element__image');
-        imageCard.src = this._link;
-        imageCard.alt = this._name;
+        this._nameCard = this._newCard.querySelector('.element__name');
+        this._nameCard.textContent = this._name;
+        this._imageCard.src = this._link;
+        this._imageCard.alt = this._name;
     }
 
     _handleLikeCard() {
-        const likeBtn = this._newCard.querySelector('.element__like-btn');
-        likeBtn.classList.toggle('element__like-btn_active')
+        this._likeButton.classList.toggle('element__like-btn_active')
     }
 
     _handleDeleteCard() {
@@ -34,12 +33,12 @@ export class Card {
     }
 
     _setEventListeners() {
-        const dltBtn = this._newCard.querySelector('.element__del-btn');
-        dltBtn.addEventListener('click', () => this._handleDeleteCard());
-        const likeBtn = this._newCard.querySelector('.element__like-btn');
-        likeBtn.addEventListener('click', () => this._handleLikeCard());
-        const imageCard = this._newCard.querySelector('.element__image');
-        imageCard.addEventListener('click', () => this._handleBigImage());
+        this._deleteButton = this._newCard.querySelector('.element__del-btn');
+        this._deleteButton.addEventListener('click', () => this._handleDeleteCard());
+        this._likeButton = this._newCard.querySelector('.element__like-btn');
+        this._likeButton.addEventListener('click', () => this._handleLikeCard());
+        this._imageCard = this._newCard.querySelector('.element__image');
+        this._imageCard.addEventListener('click', () => this._handleBigImage());
     }
 
     getView() {
